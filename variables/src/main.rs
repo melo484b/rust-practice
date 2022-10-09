@@ -60,4 +60,5 @@ fn main() {
     let second = a[1];
 
     // Invalid access results in a runtime error - causes a panic instead of allowing access and continuing
+
 }
