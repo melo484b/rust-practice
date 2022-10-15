@@ -6,14 +6,18 @@
 // Words that start with a vowel have “hay” added to the end instead (“apple” becomes “apple-hay”). 
 // Keep in mind the details about UTF-8 encoding!
 
+// I/O covered in chapter 12. . .
 // Using a hash map and vectors, create a text interface to allow a user to add employee names to a department in a company. 
 // For example, “Add Sally to Engineering” or “Add Amir to Sales.” 
 // Then let the user retrieve a list of all people in a department or all people in the company by department, sorted alphabetically.
 
-use::std::{vec, collections::HashMap};
+use::std::{vec, io, collections::HashMap};
 
 fn main() {
     median_and_mode();
+
+    pig_latin();
+
 }
 
 fn median_and_mode() {
@@ -30,22 +34,31 @@ fn median_and_mode() {
     let median = int_vec[int_vec.len()/2];
 
     let mut mode: i32 = 0;
-    let mut most_occurances: i32 = 0;
+    let mut number_of_occurances: i32 = 0;
     for (number, occurances) in int_map {
-        if occurances > most_occurances {
-            most_occurances = occurances;
+        if occurances > number_of_occurances {
+            number_of_occurances = occurances;
             mode = number;
         }
     }
 
     print!("The median is: {}\nThe mode is: {}\n", median, mode);
-    print!("{:?}", int_vec);
+    print!("{:?}\n", int_vec);
 }
 
 fn pig_latin() {
+    let vowels = vec!['a', 'e', 'i', 'o', 'u', 'y'];
 
-}
+    let english_in = vec!["cat", "orchid", "mango", "iridium"];
 
-fn employee_department_interface() {
 
+
+    for word in english_in {
+        let first_letter = word.chars().next().unwrap();
+        if vowels.contains(&first_letter) {
+            println!("{}-hay", word);
+        } else {
+            println!("{}-{}ay", &word[1..], first_letter);
+        }
+    }
 }
